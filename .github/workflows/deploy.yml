@@ -27,6 +27,12 @@ jobs:
         pip install flake8
         flake8 app/
 
+  #  - name: Run unit tests
+  #    run: |
+  #      pip install pytest httpx
+  #      PYTHONPTH="${{ github.workspace }}"
+  #      pytest app/python/tests/unit
+
     - name: Build Docker image
       run: |
         docker build -t davismatrix/fta:latest .
