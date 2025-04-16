@@ -13,34 +13,25 @@ logger = logging.getLogger(__name__)
 REQUEST_COUNTER = Counter('http_requests_total', 'Total HTTP Requests')
 
 @app.get("/")
-
-
 def read_root():
     logger.info("Root endpoint hit")
     REQUEST_COUNTER.inc()
     return {"status": "ok"}
 
 
+
 @app.get("/healthz")
-
-
-
 def health_check():
     return {"health": "ok"}
 
 
+
 @app.get("/ready")
-
-
-
 def readiness_check():
     return {"ready": "yes"}
 
 
 
 @app.get("/metrics")
-
-
-
 def metrics():
     return generate_latest()
