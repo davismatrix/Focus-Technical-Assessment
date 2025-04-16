@@ -27,14 +27,14 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t demo-app:latest .
+        docker build -t davismatrix/fta:latest .
 
     - name: Push to registry (if public or local)
       run: echo "push skipped"
 
     - name: Apply K8s manifests
       run: |
-        kubectl apply -f k8s/
+        kubectl apply -f manifests/
 
     - name: Wait for readiness
       run: |
