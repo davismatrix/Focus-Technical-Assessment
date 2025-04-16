@@ -38,7 +38,9 @@ jobs:
         docker build -t davismatrix/fta:latest .
 
     - name: Push to registry (if public or local)
-      run: echo "push skipped"
+      run: |
+        echo "push skipped"
+        docke push davismatrix/fta:latest
 
     - name: Apply K8s manifests
       run: |
