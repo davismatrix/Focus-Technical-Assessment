@@ -7,6 +7,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: self-hosted
+    env:
+      RUNNER_TOOL_CACHE: $HOME/runner-tool-cache
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
