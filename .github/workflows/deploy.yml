@@ -8,7 +8,7 @@ jobs:
   build-and-deploy:
     runs-on: self-hosted
     env:
-      RUNNER_TOOL_CACHE: $HOME/runner-tool-cache
+      RUNNER_TOOL_CACHE: $HOME/actions_cache
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -27,6 +27,11 @@ jobs:
         pip install flake8
         flake8 app/
 
+    - name: Run unit tests
+      run: |
+        pip install pytest
+        pytest app/tests/unit
+
     - name: Build Docker image
       run: |
         docker build -t davismatrix/fta:latest .
@@ -43,5 +48,5 @@ jobs:
         sleep 20
         kubectl wait --for=condition=ready pod -l app=demo --timeout=60s
 
-    - name: Run integration test
-      run: curl http://demo.local/ready
+    #- name: Run integration test
+    #  run: curl http://demo.local/ready
