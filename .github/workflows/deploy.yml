@@ -39,8 +39,8 @@ jobs:
 
     - name: Push to registry (if public or local)
       run: |
-        echo "push skipped"
-        docke push davismatrix/fta:latest
+        echo "push image to registry"
+        docker push davismatrix/fta:latest
 
     - name: Apply K8s manifests
       run: |
