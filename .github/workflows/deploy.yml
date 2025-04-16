@@ -1,0 +1,45 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: |
+        pip install -r app/requirements.txt
+
+    - name: Lint
+      run: |
+        pip install flake8
+        flake8 app/
+
+    - name: Build Docker image
+      run: |
+        docker build -t demo-app:latest .
+
+    - name: Push to registry (if public or local)
+      run: echo "push skipped"
+
+    - name: Apply K8s manifests
+      run: |
+        kubectl apply -f k8s/
+
+    - name: Wait for readiness
+      run: |
+        sleep 20
+        kubectl wait --for=condition=ready pod -l app=demo --timeout=60s
+
+    - name: Run integration test
+      run: curl http://demo.local/ready
