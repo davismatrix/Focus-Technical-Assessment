@@ -19,19 +19,11 @@ def read_root():
     return {"status": "ok"}
 
 
-
 @app.get("/healthz")
 def health_check():
     return {"health": "ok"}
 
 
-
 @app.get("/ready")
 def readiness_check():
-    return {"ready": "yes"}
-
-
-
-@app.get("/metrics")
-def metrics():
-    return generate_latest()
+    return {"ready": "ok"}
