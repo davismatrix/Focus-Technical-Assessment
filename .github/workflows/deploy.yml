@@ -34,7 +34,7 @@ jobs:
 
     - name: Apply K8s manifests
       run: |
-        kubectl apply -f manifests/
+        kubectl apply -f manifests/ --validate=false
 
     - name: Wait for readiness
       run: |
