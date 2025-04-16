@@ -1,6 +1,5 @@
 from fastapi import FastAPI
-from prometheus_client import Counter, generate_latest
-#import uvicorn
+from prometheus_client import Counter
 import logging
 
 app = FastAPI()
