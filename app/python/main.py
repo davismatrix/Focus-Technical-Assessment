@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from prometheus_client import Counter, generate_latest
-import uvicorn
+#import uvicorn
 import logging
 
 app = FastAPI()
@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 
 # Prometheus metric
 REQUEST_COUNTER = Counter('http_requests_total', 'Total HTTP Requests')
+
 
 @app.get("/")
 def read_root():
