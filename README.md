@@ -48,7 +48,7 @@ This project simulates an on-prem Kubernetes environment with no cloud dependenc
 kind create cluster --name fta-k8-cluster --config ./ca/kind-cluster.yml
 
 # Install tools (ca, cert-manager, MetalLB, HAProxy, map domain to external IP) using make to automate the installations and configurations
-Make -C ./ca install all
+make -C ./ca install all
 
 # Build image locally and push app image docker hub
 docker build -t MY_DOCKER_USERNAME/statusapp:latest .

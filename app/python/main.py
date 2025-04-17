@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from prometheus_client import Counter
+from prometheus_client import Counter, generate_latest
 import logging
 
 app = FastAPI()
@@ -27,3 +27,8 @@ def health_check():
 @app.get("/ready")
 def readiness_check():
     return {"ready": "ok"}
+
+
+@app.get("/metrics")
+def metrics():
+    return generate_latest()
